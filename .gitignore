@@ -1,0 +1,6 @@
+.gitignore
+variables.properties
+lib/*
+.idea/*
+build/*
+reports/*
