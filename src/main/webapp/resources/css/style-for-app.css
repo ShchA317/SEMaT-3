@@ -1,0 +1,68 @@
+#main-table {
+    margin: auto;
+}
+
+#enter-text {
+    font-family: sans-serif;
+    font-size: 200%;
+    color: var(--primary-color);
+}
+
+button {
+    color: var(--background-color);
+    text-align: center;
+    padding: 1% 2%;
+    margin: 2%;
+    background: var(--primary-color);
+    border: outset;
+    border-color: var(--secondary-color);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input {
+    color: var(--primary-color);
+    border-width: thick;
+    border-style: outset;
+    border-color: var(--secondary-color);
+    border-radius: 5px;
+    font-size: 80%;
+}
+
+.result_table {
+    width: 100%;
+    font-size: 100%;
+    border: solid;
+    border-color: var(--secondary-color);
+    border-radius: 5px;
+    text-align: center;
+    font-style: normal;
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    border-spacing: 15px;
+}
+
+td {
+    text-align: center;
+}
+
+.vars_table {
+    margin: auto;
+}
+
+#time {
+    color: var(--primary-color);
+}
+
+#Y_field {
+    color: var(--background-color);
+}
+
+#err_msg {
+    background: red;
+    color: var(--background-color);
+    border: solid;
+    border-color: var(--secondary-color);
+    border-radius: 5px;
+}
+

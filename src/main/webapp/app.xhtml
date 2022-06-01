@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:jsp="http://java.sun.com/jsf/core">
+
+<ui:include src="app.xhtml">
+    <ui:param name="mainBean" value="#{mainBean}" />
+</ui:include>
+
+<ui:composition template="templates/template_layout.xhtml">
+
+    <ui:define name="head">
+        <title> Lab3 - [App] </title>
+        <meta name="description" content="Лабораторная работа №3 по дисциплине веб-программирование - график"/>
+        <h:outputStylesheet library="css" name="style-for-app.css"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <table id="main-table">
+            <thead>
+            <tr>
+                <td colspan="7"><h3>Валидация введённых значений:</h3></td>
+            </tr>
+            </thead>
+            <tbody>
+            <h:form id="form" prependId="false">
+            <tr>
+                <td>
+                    <svg id="graph" xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+                        <line x1="0" y1="150" x2="300" y2="150" stroke="#000720"/>
+                        <line x1="150" y1="0" x2="150" y2="300" stroke="#000720"/>
+                        <polygon points="300,150 295,155 295, 145" fill="#000720" stroke="#000720"/>
+                        <polygon points="150,0 145,5 155,5" fill="#000720" stroke="#000720"/>
+                        <rect id="rect" x="150" y="25" width="60" height="125" fill-opacity="0.4" stroke="navy"
+                              fill="blue"/>
+                        <polygon id="triangle" points="150,150 270,150 150,270" fill-opacity="0.4" stroke="navy"
+                                 fill="blue"/>
+                        <path id="path" d="M 150 150 L 90 150 A 60 60 0 0 0 150 210 L 150 150" fill-opacity="0.4"
+                              stroke="navy" fill="blue"/>
+                        <text class="r-gr" x="275" y="145">r</text>
+                        <text class="r-gr" x="25" y="145">r</text>
+                        <text class="r-gr" x="155" y="275">r</text>
+                        <text class="r-gr" x="155" y="25">r</text>
+                        <text x="149" y="275">-</text>
+                        <text x="20" y="145">-</text>
+                    </svg>
+                </td>
+            </tr>
+<!--            </h:form>-->
+<!--            <h:form id="form2" prependId="false">-->
+            <tr>
+                <td>
+                    <p id="enter-text">Enter values:</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="vars_table">
+                            <p>X=
+                                <p:selectOneRadio layout="grid" columns="3" onchange="reactToChangeXRadio(this.value)">
+                                    <f:selectItem itemValue="-3" itemLabel="-3"/>
+                                    <f:selectItem itemValue="-2" itemLabel="-2"/>
+                                    <f:selectItem itemValue="-1" itemLabel="-1"/>
+                                    <f:selectItem itemValue="0" itemLabel="0"/>
+                                    <f:selectItem itemValue="1" itemLabel="1"/>
+                                    <f:selectItem itemValue="2" itemLabel="2"/>
+                                    <f:selectItem itemValue="3" itemLabel="3"/>
+                                    <f:selectItem itemValue="4" itemLabel="4"/>
+                                    <f:selectItem itemValue="5" itemLabel="5"/>
+                                </p:selectOneRadio>
+                            </p>
+
+                            <p class="variable">
+                                <label for="Y-field"> Y =</label>
+                                <input id="Y-field" type="text" name="Y-field" maxlength="5"/>
+                            </p>
+
+                            <p>R=
+                                <h:commandButton type="button" value="1"/>
+                                <h:commandButton type="button" value="2"/>
+                                <h:commandButton type="button" value="3"/>
+                                <h:commandButton type="button" value="4"/>
+                                <h:commandButton type="button" value="5"/>
+                            </p>
+<!--                            <p>-->
+<!--                                <h:commandButton type="button" value="circle"/>-->
+<!--                                <h:commandButton type="button" value="square"/>-->
+<!--                            </p>-->
+                            <p>
+                                <p:remoteCommand name="sendRequest" update="resTable" action="#{mainBean.validate}"/>
+                                <button id="checkButton" type="button">Отправить</button>
+                            </p>
+                    </div>
+                </td>
+            </tr>
+            </h:form>
+            <tr>
+                <td>
+                    <a href="start_page.xhtml">Вернуться на стартовую страницу</a>
+                </td>
+            </tr>
+            </tbody>
+
+            <tfoot>
+            <tr id="outputContainer">
+<!--                <td colspan="7"><h4><span class="outputStub notification">Результаты отсутствуют</span></h4></td>-->
+            </tr>
+            <tr>
+                <td colspan="7" style="">
+                    <h:dataTable value="#{mainBean.points}" var="p" id="resTable">
+                        <h:column>
+                            <f:facet name="header">x</f:facet>
+                            #{p.x}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">y</f:facet>
+                            #{p.y}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">r</f:facet>
+                            #{p.r}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Точка входит в ОДЗ</f:facet>
+                            #{p.coordsStatus}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Дата запроса</f:facet>
+                            #{p.bornDate}
+                        </h:column>
+                    </h:dataTable>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <h:outputScript library="js" name="validator.js"/>
+        <h:outputScript library="js" name="graph_drawer.js"/>
+    </ui:define>
+</ui:composition>
+
+</html>
