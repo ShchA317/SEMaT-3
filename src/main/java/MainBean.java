@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @ManagedBean(name = "mainBean")
 @SessionScoped
-public class    MainBean implements Serializable {
+public class MainBean implements Serializable {
 
     private static final long serialVersionUID = 4L;
     private EntityManagerFactory managerFactory;
