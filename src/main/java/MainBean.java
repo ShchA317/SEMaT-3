@@ -21,6 +21,7 @@ public class MainBean implements Serializable {
     private EntityManager manager;
     private List<Point> points = new ArrayList<>();
 
+
 //    @Transactional
     public void validate() {
         System.out.println("Пришли данные на валидацию");
@@ -48,7 +49,6 @@ public class MainBean implements Serializable {
                 if(params.get("Y-field") == null) System.out.println("Y-field = null");
                 if(params.get("R-field") == null) System.out.println("R-field = null");
             }
-
 
         } finally {
             manager.close();
