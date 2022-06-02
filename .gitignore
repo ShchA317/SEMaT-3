@@ -1,6 +1,6 @@
 .gitignore
 variables.properties
 lib/*
-.idea/*
+.idea/
 build/*
 reports/*
